@@ -9,9 +9,9 @@ import ErrorFormatter from '../utils/ErrorHandler';
  * @param {string} email
  * @returns {Promise<UserInfo>}
  */
-export async function fetchAll(): Promise<BeerSchema> {
+export async function fetchAll(id: number): Promise<BeerSchema[]> {
   try {
-    const beers = await Beer.getAll();
+    const beers = await Beer.getAll(id);
 
     return beers;
   } catch (err) {
@@ -30,6 +30,7 @@ export async function insertBeer(beerPayload: BeerPayload) {
 
     return beer;
   } catch (err) {
+    console.log(err);
     const error = new ErrorFormatter({
       code: 'InternalServerError',
       message: 'OOPS! Something went wrong'

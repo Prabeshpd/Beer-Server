@@ -12,7 +12,6 @@ import ErrorFormatter from '../utils/ErrorHandler';
  */
 export async function findUserByEmail(email: string): Promise<UserInfo> {
   const user = await User.fetchByEmail(email);
-
   if (!user) {
     const error = new ErrorFormatter({
       code: 'BadRequest',
@@ -38,9 +37,10 @@ export async function addUser(userpayload: UserPayload) {
   try {
     const password = userpayload.password;
     const cryptedPassword = await crypt.hash(password);
-    const payload = { ...userpayload, password: cryptedPassword };
+    const payload = { ...userpayload, password: cryptedPassword, is_active: true };
     await User.insertData(payload);
   } catch (err) {
+    console.log(err);
     const error = new ErrorFormatter({
       code: 'InternalServerError',
       message: 'OOPS! Something went wrong'

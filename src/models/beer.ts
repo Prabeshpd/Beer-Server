@@ -6,6 +6,7 @@ import { toCamelCase } from '../utils/object';
 export interface BeerModel {
   id: number;
   name: string;
+  user_id: number;
   created_at: string;
   description: string;
   genre: string;
@@ -31,8 +32,10 @@ const db: Knex = knex(dbConfig);
 class Beer {
   public static table = 'beers';
 
-  public static async getAll(): Promise<BeerSchema> {
-    return db.select('*').from('beers');
+  public static async getAll(id: number): Promise<BeerSchema[]> {
+    const data = (await db.select('*').from('beers').whereIn('user_id', [id])) as BeerSchema[];
+
+    return data;
   }
 
   public static async insertData(data: BeerPayload): Promise<BeerSchema[]> {

@@ -18,6 +18,7 @@ export async function login(req: FastifyRequest, reply: FastifyReply) {
 
     await reply.code(200).send(data);
   } catch (err: any) {
+    console.log(err);
     reply.status(500).send(err.error);
   }
 }
@@ -35,6 +36,7 @@ export async function createUser(req: FastifyRequest, reply: FastifyReply) {
 
     await reply.code(200).send(data);
   } catch (err: any) {
+    console.log(err);
     reply.status(500).send(err.error);
   }
 }

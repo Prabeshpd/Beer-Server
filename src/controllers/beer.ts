@@ -11,7 +11,8 @@ import * as beerService from '../services/beer';
  */
 export async function fetchAll(req: FastifyRequest, reply: FastifyReply) {
   try {
-    const response = await beerService.fetchAll();
+    const userId = req.user.id;
+    const response = await beerService.fetchAll(userId);
 
     await reply.code(200).send(response);
   } catch (err: any) {
@@ -27,7 +28,9 @@ export async function fetchAll(req: FastifyRequest, reply: FastifyReply) {
  */
 export async function add(req: FastifyRequest, reply: FastifyReply) {
   try {
-    const payload = req.body as BeerPayload;
+    const userId = req.user.id;
+    const beerPayload = req.body as BeerPayload;
+    const payload = { ...beerPayload, user_id: userId };
     const response = await beerService.insertBeer(payload);
 
     await reply.code(200).send(response);
