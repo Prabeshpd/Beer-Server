@@ -1,0 +1,24 @@
+{
+  "schema": {
+    "description": "",
+    "tags": [""],
+    "summary": "app-info",
+    "headers": {
+      "type": "object",
+      "required": [""],
+      "properties": {}
+    },
+    "params": {
+      "type": "object",
+      "required": [""],
+      "properties": {}
+    },
+    "response": {
+      "200": {
+        "description": "Successful response",
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

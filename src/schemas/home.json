@@ -1,0 +1,27 @@
+{
+  "schema": {
+    "description": "Get Application Information",
+    "tags": ["Application Info"],
+    "summary": "app-info",
+    "headers": {
+      "type": "object",
+      "required": ["x-app-id"],
+      "properties": {
+        "x-app-id": {
+          "type": "string",
+          "description": "user id"
+        }
+      }
+    },
+    "response": {
+      "200": {
+        "description": "Successful response",
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "version": { "type": "string" }
+        }
+      }
+    }
+  }
+}
